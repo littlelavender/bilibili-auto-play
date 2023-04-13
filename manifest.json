@@ -1,0 +1,27 @@
+{
+  "name": "Bilibili auto play",
+  "description": "An extension to intelligent play next video on bilibili.",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "icons": {
+    "16": "icons/bilibili16x16.png",
+    "32": "icons/bilibili32x32.png",
+    "48": "icons/bilibili48x48.png",
+    "128": "icons/bilibili128x128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": "icons/bilibili128x128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "webNavigation", 
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.bilibili.com//*"
+  ]
+}
