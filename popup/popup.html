@@ -4,7 +4,7 @@
     <title>Bilibili auto play</title>
     <style>
       body {
-        width: 500px;
+        width: 350px;
       }
       button {
         background-color: #336dab;
@@ -18,7 +18,27 @@
   </head>
   <body>
     <div>
-      <h1>Hello world</h1>
+      <h1>设置</h1>
+      <div>
+        <span>启用</span>
+        <input id="ck_enable" type="checkbox" />
+      </div>
+      <div>
+        <span>视频选集(分P)自动连播</span>
+        <input id="ck_multi_page" type="checkbox" />
+      </div>
+      <div>
+        <span>视频合集自动连播</span>
+        <input id="ck_sections" type="checkbox" />
+      </div>
+      <div>
+        <span>推荐视频自动连播</span>
+        <input id="ck_reco" type="checkbox" />
+      </div>
+      <div style="margin-top: 10px">
+        <span>接下来播放：</span>
+        <span id="video_type"></span>
+      </div>
     </div>
     <script src="popup.js"></script>
   </body>

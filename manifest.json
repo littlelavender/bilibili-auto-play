@@ -1,7 +1,7 @@
 {
-  "name": "Bilibili auto play",
+  "name": "Bilibili next play",
   "description": "An extension to intelligent play next video on bilibili.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifest_version": 3,
   "icons": {
     "16": "icons/bilibili_red16.png",
@@ -17,9 +17,10 @@
     "service_worker": "background.js"
   },
   "permissions": [
-    "webNavigation", 
+    "webNavigation",
     "tabs",
-    "scripting"
+    "scripting",
+    "storage"
   ],
   "host_permissions": [
     "https://www.bilibili.com//*"
