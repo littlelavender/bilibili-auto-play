@@ -29,8 +29,6 @@ function handleVideoType (video_type_option) {
     video_type_desc = '视频合集'
   } else if (video_type_option == 3) {
     video_type_desc = '推荐视频'
-  } else {
-    video_type_desc = '当前不是视频页'
   }
   video_type.innerText = video_type_desc
 }
@@ -52,39 +50,42 @@ ck_enable.addEventListener('change', () => {
   })
 });
 
-ck_multi_page.addEventListener('change', async () => {
+ck_multi_page.addEventListener('change', () => {
   console.log('改变视频选集状态, checked=' + ck_multi_page.checked);
   options.ck_multi_page = ck_multi_page.checked;
   chrome.storage.sync.set({ 
     bnp_options: options
   })
-  await runScript();
+  runScript();
 });
 
-ck_sections.addEventListener('change', async () => {
+ck_sections.addEventListener('change', () => {
   console.log('改变视频合集状态, checked=' + ck_sections.checked);
   options.ck_sections = ck_sections.checked;
   chrome.storage.sync.set({ 
     bnp_options: options
   })
-  await runScript();
+  runScript();
 });
 
-ck_reco.addEventListener('change', async () => {
+ck_reco.addEventListener('change', () => {
   console.log('改变推荐视频状态, checked=' + ck_reco.checked);
   options.ck_reco = ck_reco.checked;
   chrome.storage.sync.set({ 
     bnp_options: options
   })
-  await runScript();
+  runScript();
 });
 
-async function runScript() {
+function runScript() {
   let queryOptions = { active: true, currentWindow: true };
-  let [tab] = await chrome.tabs.query(queryOptions);
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    files: ['script.js']
+  chrome.tabs.query(queryOptions, ([tab]) => {
+    if (tab.url.indexOf('https://www.bilibili.com/video/') !== -1) {
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        files: ['script.js']
+      });
+    }
   });
 }
 

@@ -4,38 +4,65 @@
     <title>Bilibili auto play</title>
     <style>
       body {
-        width: 350px;
+        width: 260px;
       }
-      button {
-        background-color: #336dab;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        font-size: 16px;
+
+      .box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+      }
+      
+      input[type="checkbox"] {
+        appearance: none; /* 不显示控制原生外观 */
+        position: relative;
+        width: 40px;
+        height: 20px;
+        background: #ccc;
+        margin: 0;
+      }
+      input[type='checkbox']::after {
+        content: '';
+        display: inline-block;
+        width: 1rem;
+        height:1rem;
+        background: #fff;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+      }
+      input[type='checkbox']:checked {
+        background: rgb(19, 206, 102);
+      }
+      input[type='checkbox']:checked::after {
+        left: 55%;
+      }
+      input[type='checkbox']:checked:disabled {
+        background-color: #b3e19d;
       }
     </style>
   </head>
   <body>
     <div>
       <h1>设置</h1>
-      <div>
+      <div class="box">
         <span>启用</span>
         <input id="ck_enable" type="checkbox" />
       </div>
-      <div>
+      <div class="box">
         <span>视频选集(分P)自动连播</span>
         <input id="ck_multi_page" type="checkbox" />
       </div>
-      <div>
+      <div class="box">
         <span>视频合集自动连播</span>
         <input id="ck_sections" type="checkbox" />
       </div>
-      <div>
+      <div class="box">
         <span>推荐视频自动连播</span>
         <input id="ck_reco" type="checkbox" />
       </div>
-      <div style="margin-top: 10px">
+      <div style="margin: 2px 0 10px">
         <span>接下来播放：</span>
         <span id="video_type"></span>
       </div>
