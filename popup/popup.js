@@ -26,9 +26,9 @@ function handleVideoType (video_type_option) {
   if (video_type_option == 1) {
     video_type_desc = '视频选集(分P)'
   } else if (video_type_option == 2) {
-    video_type_desc = '视频合集'
+    video_type_desc = '合集和视频列表'
   } else if (video_type_option == 3) {
-    video_type_desc = '推荐视频'
+    video_type_desc = '单个视频'
   }
   video_type.innerText = video_type_desc
 }
@@ -60,7 +60,7 @@ ck_multi_page.addEventListener('change', () => {
 });
 
 ck_sections.addEventListener('change', () => {
-  console.log('改变视频合集状态, checked=' + ck_sections.checked);
+  console.log('改变合集和视频列表状态, checked=' + ck_sections.checked);
   options.ck_sections = ck_sections.checked;
   chrome.storage.sync.set({ 
     bnp_options: options

@@ -6,16 +6,14 @@
     return;
   }
 
-  let multi_page = document.getElementById("multi_page");
-  let video_sections = document.getElementsByClassName("video-sections-v1");
-  let base_video_sections = document.getElementsByClassName("base-video-sections-v1");
-  if (multi_page) {
+  let multi_page = document.getElementsByClassName("video-pod__list multip list");
+  let video_sections = document.getElementsByClassName("video-pod__list section");
+  if (multi_page.length > 0) {
     console.log("接下来播放视频选集(分P)")
     bnp_options.video_type = 1;
     chrome.storage.sync.set({ bnp_options });
     chrome.runtime.sendMessage({ type: 'change_video_type', value: 1 })
-    let cur_pages = document.getElementsByClassName("cur-page");
-    let cur_page = cur_pages[0];
+    let cur_page = document.querySelector(".amt");
     let cur_page_text = cur_page.innerText; // "(13/27)"
     let sep_index = cur_page_text.indexOf('/')
     let cur_item = parseInt(cur_page_text.substring(1, sep_index));
@@ -33,7 +31,7 @@
         // ...
         // 所以先点击按钮，再修改localStorage就可以了 yes
         console.log("设置为close")
-        document.getElementsByClassName("switch-button")[0].click()
+        document.querySelector(".switch-btn").click()
         localStorage.setItem("recommend_auto_play", "close");
       }
     } else {
@@ -41,17 +39,16 @@
       console.log("播放设置是" + option)
       if (next_auto_play != option) {
         console.log("设置为" + option)
-        document.getElementsByClassName("switch-button")[0].click()
+        document.querySelector(".switch-btn").click()
         localStorage.setItem("recommend_auto_play", option);
       }
     }
-  } else if (video_sections.length > 0 || base_video_sections.length > 0) {
-    console.log("接下来播放系列视频");
+  } else if (video_sections.length > 0) {
+    console.log("接下来播放合集和视频列表");
     bnp_options.video_type = 2;
     chrome.storage.sync.set({ bnp_options });
     chrome.runtime.sendMessage({ type: 'change_video_type', value: 2 })
-    let cur_pages = document.getElementsByClassName("cur-page");
-    let cur_page = cur_pages[0];
+    let cur_page = document.querySelector(".amt");
     let cur_page_text = cur_page.innerText;
     let sep_index = cur_page_text.indexOf('/')
     let cur_item = parseInt(cur_page_text.substring(1, sep_index));
@@ -63,7 +60,7 @@
     if (is_last_item) {
       if (next_auto_play == "open") {
         console.log("设置为close")
-        document.getElementsByClassName("switch-button")[0].click()
+        document.querySelector(".switch-btn").click()
         localStorage.setItem("recommend_auto_play", "close");
       }
     } else {
@@ -71,7 +68,7 @@
       console.log("播放设置是" + option)
       if (next_auto_play != option) {
         console.log("设置为" + option)
-        document.getElementsByClassName("switch-button")[0].click()
+        document.querySelector(".switch-btn").click()
         localStorage.setItem("recommend_auto_play", option);
       }
     }
@@ -86,7 +83,7 @@
     console.log("播放设置是" + option)
     if (next_auto_play != option) {
       console.log("设置为" + option)
-      document.getElementsByClassName("switch-button")[0].click()
+      document.querySelector(".switch-btn").click()
       localStorage.setItem("recommend_auto_play", option);
     }
   }
